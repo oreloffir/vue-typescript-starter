@@ -17,3 +17,14 @@ body {
   text-align: center;
   color: #2c3e50;
 }
+
+/* Closed menu */
+#view {
+  margin-left: 60px;
+}
+
+/* Opened menu */
+#nav.isOpen + #view{
+  width: calc(100% - 250px);
+  margin-left: 250px;
+}
