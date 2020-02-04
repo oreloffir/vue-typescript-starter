@@ -1,7 +1,10 @@
+import Product from '@/assets/ts/Entities/Product';
+import ProductsFactory from '@/assets/ts/Entities/ProductsFactory';
+
 const maxProducts = 10;
 
 class Order {
-    private _id: number;
+    private readonly _id: number;
     private products: Product[];
     protected static counter = 1;
 
@@ -15,19 +18,27 @@ class Order {
     }
 
     get preparationTime(): number {
-        return this.numOfProducts * 100;
+        let preparationTime = 0;
+
+        this.products.map(product => preparationTime += product.preparationTime());
+
+        return preparationTime;
     }
 
     get numOfProducts(): number {
         return this.products.length;
     }
 
-    public addProduct(product: Product): void {
+    public addProduct(productName: string): void {
         if (this.numOfProducts >= maxProducts) {
             return;
         }
 
-        this.products.push(product);
+        const product = ProductsFactory.createProduct(productName);
+
+        if (product && product instanceof Product) {
+            this.products.push(product);
+        }
     }
 }
 

@@ -16,7 +16,7 @@
                     <li v-text="'Example'"></li>
                 </router-link>
 
-                <router-link to="/newOrder">
+                <router-link to="/new-order">
                     <i class="material-icons">add_shopping_cart</i>
                     <li v-text="'Take Order'"></li>
                 </router-link>
